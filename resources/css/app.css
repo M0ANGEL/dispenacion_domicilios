@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+[x-cloak] {
+    display: none;
+}
+
+
+/* Archivo resources/css/app.css */
+table {
+    background-color: #f0f0f0; /* Cambia este color según tu preferencia */
+    color: #2c3e50; /* Color del texto */
+}
