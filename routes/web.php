@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\admin\PermissionController;
+use App\Http\Controllers\ConfirmarDomicilioController;
+use App\Http\Controllers\DispensacionController;
+use App\Http\Controllers\DomicilioController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FormulacionController;
 use App\Http\Controllers\mipres\ActivoController;
 use App\Http\Controllers\mipres\EntregaMendicamentosController;
@@ -28,8 +32,25 @@ Route::resource('/permissions', PermissionController::class)/* ->middleware(['ca
 /* premis mipres */
 
 Route::resource('pacientes', PacienteController::class)/* ->middleware(['can:Mipres_Crear_Paciente'] )*/;
+
+//solicitud
 Route::resource('solicitud', SolicitudController::class)/* ->middleware(['can:Mipres_Crear_Paciente'] )*/;
-Route::resource('formulacion', FormulacionController::class)/*->middleware(['can:Mipres_Crear_mipres'])*/;
+Route::get('/paciente/{cedula}', [SolicitudController::class, 'buscar']);
+
+
+//dispensacion
+Route::resource('dispensacion', DispensacionController::class)/*->middleware(['can:Mipres_Crear_mipres'])*/;
+
+//domicilios
+Route::resource('domicilios', DomicilioController::class)/*->middleware(['can:Mipres_Crear_mipres'])*/;
+
+//export archivos
+Route::get('exportar', [ExportController::class,'index'])->name('exportar.index');
+Route::post('/exportar', [ExportController::class, 'exportar'])->name('exportar.exportar');
+
+//confirmar domicilio
+Route::resource('confirmacion', ConfirmarDomicilioController::class)/*->middleware(['can: confirmar-domicilio'])*/;
+
 
 
 /* anulacion de mipres */

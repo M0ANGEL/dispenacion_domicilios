@@ -15,17 +15,6 @@
             <x-input name="email" class="w-full" placeholder="Correo" required />
         </div>
 
-        <div class="mb-4">
-            <x-label>
-                Bodega
-            </x-label>
-            <x-select class="w-full" name="bodega">
-                @foreach ($bodegas as $bodega)
-                    <option value={{ $bodega->name }}>{{ $bodega->name }}</option>
-                @endforeach
-
-            </x-select>
-        </div>
 
         <div class="mb-4">
             <x-label>
@@ -33,13 +22,9 @@
             </x-label>
             <x-select class="w-full" name="perfil">
                 <option value=""></option>
-                <option value="aux_farmacia">Aux_farmacia</option>
-                <option value="regente">Regente</option>
-                <option value="quimico">Quimico</option>
-                <option value="huv">huv</option>
-                <option value="calidad">calidad</option>
-                <option value="admin">admin</option>
-                <option value="Externo">Externo</option>
+                <option value="aux_farmacia">SOlicitante</option>
+                <option value="regente">Pograador de ordenes</option>
+                <option value="quimico">Administrador</option>
             </x-select>
         </div>
 

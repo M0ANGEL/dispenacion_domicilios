@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('tipo_doc');
             $table->string('documento')->unique();
             $table->string('telfono');
+            $table->string('direcciones')->nullable();;
             $table->longText('observacion');
             $table->timestamps();
         });

@@ -44,6 +44,7 @@ class PacienteController extends Controller
             'documento' => 'string',
             'telfono' => 'string',
             'observacion' => 'string',
+            'direcciones' => 'string',
         ]);
 
         // Verificar si el documento ya existe
@@ -67,6 +68,7 @@ class PacienteController extends Controller
             'documento' => $request->documento,
             'telfono' => $request->telfono,
             'observacion' => $request->observacion,
+            'direcciones' => $request->direcciones,
             // 'user_id' => Auth::id(),
         ]);
 

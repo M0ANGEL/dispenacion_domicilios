@@ -41,7 +41,6 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'correo' => 'unique:users,email',
-            'bodega' => 'required',
             'password' => 'required',
             'perfil',
         ]);

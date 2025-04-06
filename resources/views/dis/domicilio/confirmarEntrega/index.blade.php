@@ -59,7 +59,7 @@
 
 
     {{-- barra buscar --}}
-    <form action="{{ route('dispensacion.index') }}" method="get">
+    <form action="{{ route('solicitud.index') }}" method="get">
         <div class="buscar">
             <input class="barra" type="text" name="text" value="{{ $busqueda }}" />
             <input class="btn-buscar" type="submit" value="Buscar">
@@ -115,61 +115,61 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $dispensacion)
+                        @foreach ($users as $confirmacion)
                             <tr class="bg-white border-b  dark:border-gray-700">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
-                                    {{ $dispensacion->id }}
+                                    {{ $confirmacion->id }}
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $dispensacion->paciente->nombre1 ?? '' }}
+                                    {{ $confirmacion->paciente->nombre1 ?? '' }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $dispensacion->paciente->nombre2 ?? '' }}
+                                    {{ $confirmacion->paciente->nombre2 ?? '' }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $dispensacion->paciente->apellido1 ?? '' }}
+                                    {{ $confirmacion->paciente->apellido1 ?? '' }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $dispensacion->paciente->apellido2 ?? '' }}
+                                    {{ $confirmacion->paciente->apellido2 ?? '' }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $dispensacion->paciente->tipo_doc ?? '' }}
+                                    {{ $confirmacion->paciente->tipo_doc ?? '' }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $dispensacion->paciente->documento ?? '' }}
+                                    {{ $confirmacion->paciente->documento ?? '' }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $dispensacion->fecha_solicitud ?? '' }}
+                                    {{ $confirmacion->fecha_solicitud ?? '' }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $dispensacion->userSolicita->name ?? '' }}
+                                    {{ $confirmacion->userSolicita->name ?? '' }}
                                 </td>
-                                @switch($dispensacion->estado)
-                                    @case(1)
+                                @switch($confirmacion->estado)
+                                    @case(3)
                                         <td style="color: rgb(44, 62, 80)">
-                                            <p style="color:rgb(255, 21, 0)"><b>Solicitud Pendiente</b></p>
+                                            <p style="color:rgb(255, 21, 0)"><b>Confiracion Pendiente</b></p>
                                         </td>
                                     @break
 
-                                    @case(2)
+                                    @case(4)
                                         <td style="color: rgb(44, 62, 80)">
-                                            <p style="color:rgb(13, 32, 173)"><b>Solicitud Dispensada</b></p>
+                                            <p style="color:rgb(13, 32, 173)"><b>Domicilio Confirmado</b></p>
                                         </td>
                                     @break
 
                                     @default
                                 @endswitch
-                                @switch($dispensacion->estado)
-                                    @case(1)
+                                @switch($confirmacion->estado)
+                                    @case(3)
                                     <td class="px-6 py-4">
-                                        <a href="{{ route('dispensacion.edit', $dispensacion) }}">
+                                        <a href="{{ route('confirmacion.edit', $confirmacion) }}">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </a>
                                     </td>
                                     @break
 
-                                    @case(2)
+                                    @case(4)
                                         <td style="color: rgb(44, 62, 80)">
                                             <p style="color:rgb(13, 32, 173)"><b>°°°</b></p>
                                         </td>

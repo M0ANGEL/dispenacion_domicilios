@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\mipres\Mipres;
 use App\Models\Solicitud;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SolicitudController extends Controller
 {
     public function index(Request $request)
     {
         $busqueda = $request->get('text', '');
-        $users = Solicitud::orderBy('id', 'desc')
-            ->where('nombre1', 'like', '%' . $busqueda . '%')
-            ->orWhere('documento', 'like', '%' . $busqueda . '%')
-            ->orWhere('apellido1', 'like', '%' . $busqueda . '%')
+    
+        $users = Solicitud::with('paciente')
+            ->whereHas('paciente', function ($query) use ($busqueda) {
+                $query->where('documento', 'like', '%' . $busqueda . '%');
+            })
+            ->orderBy('id', 'desc')
+            ->where('estado',1)
             ->paginate(6);
-
-        return view('dis.paciente.index', compact('users', 'busqueda'));
+    
+        return view('dis.solicitud.index', compact('users', 'busqueda'));
     }
 
     /**
@@ -25,52 +31,50 @@ class SolicitudController extends Controller
     public function create()
     {
 
-        return view('dis.paciente.create');
+        return view('dis.solicitud.create');
     }
+
+    public function buscar($cedula)
+    {
+
+        $paciente = Mipres::where('documento', $cedula)->first();
+
+        if ($paciente) {
+            return response()->json([
+                'success' => true,
+                'paciente' => $paciente
+            ]);
+        } else {
+            return response()->json([
+                'success' => false
+            ]);
+        }
+    }
+
 
     public function store(Request $request)
     {
         $request->validate([
-           'nombre1' => 'string',
-            'nombre2' => 'string',
-            'apellido1' => 'string',
-            'apellido2' => 'string',
-            'tipo_doc' => 'string',
-            'documento' => 'string',
-            'telfono' => 'string',
-            'observacion' => 'string',
+            'paciente_id' => 'string',
+            'observacion_solicitud' => 'string',
+            'fecha_solicitud' => 'string',
         ]);
 
-        // Verificar si el documento ya existe
-        $existingPatient = Solicitud::where('documento', $request->documento)->first();
-        if ($existingPatient) {
-            session()->flash('swal', [
-                'icon' => 'error',
-                'title' => 'Error',
-                'text' => 'Este documento ya está registrado.',
-            ]);
-            return back()->withInput();
-        }
-
         // Crear el registro si no existe
-        $huv = Solicitud::create([
-            'nombre1' => $request->nombre1,
-            'nombre2' => $request->nombre2,
-            'apellido1' => $request->apellido1,
-            'apellido2' => $request->apellido2,
-            'tipo_doc' => $request->tipo_doc,
-            'documento' => $request->documento,
-            'telfono' => $request->telfono,
-            'observacion' => $request->observacion,
-            // 'user_id' => Auth::id(),
+        Solicitud::create([
+            'paciente_id' => $request->paciente_id,
+            'observacion_solicitud' => $request->observacion_solicitud,
+            'fecha_solicitud' => $request->fecha_solicitud,
+            'usuario_solicitud_id' => Auth::id(),
+            'fecha_solicitud' => now()
         ]);
 
         session()->flash('swal', [
             'icon' => 'success',
             'title' => 'Bien hecho',
-            'text' => 'El paciente se creó correctamente',
+            'text' => 'La solicitu se creó correctamente',
         ]);
 
-        return view('dis.paciente.create');
+        return redirect()->route('solicitud.create');
     }
 }
