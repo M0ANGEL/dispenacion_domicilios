@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('nombre2')->nullable();
             $table->string('apellido1')->nullable(); 
             $table->string('apellido2')->nullable();
-            $table->string('cedula')->unique();
+            $table->string('tipo_doc');
+            $table->string('documento')->unique();
             $table->string('telfono');
             $table->longText('observacion');
             $table->timestamps();

@@ -15,14 +15,21 @@ return new class extends Migration
     {
         Schema::create('dispenacion', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre1');
-            $table->string('nombre2')->nullable();
-            $table->string('apellido1')->nullable(); 
-            $table->string('apellido2')->nullable();
-            $table->string('cedula')->unique();
-            $table->string('telfono');
-            $table->longText('observacion');
+            $table->unsignedBigInteger('paciente_id');
+            $table->string('cantida_formula');
+            $table->integer('valor');
+            $table->string('producto');
+            // $table->unsignedBigInteger('productos_id');
+            $table->longText('observacion')->nullable();
+            $table->string('estado',1)->default(1); //1 creacion de solicitud  || 2 cuando se baja el txt pasa a domicilio  || 3 cuando domicilio confirma entrega fin proceso
+            $table->timestamp('fecha_solicitud');
+            $table->timestamp('fecha_domicilio')->nullable();
+            $table->timestamp('fecha_entreda')->nullable();
             $table->timestamps();
+
+            $table->foreign('paciente_id')->references('id')->on('pacientes');
+            // $table->foreign('productos_id')->references('id')->on('productos');
+
         });
     }
 

@@ -1,0 +1,1 @@
+<table class="w-full text-sm text-center rtl:text-right text-gray-800 dark:text-gray-800" style="border: rgb(172, 174, 175); background: rgb(173, 173, 173);"></table>
