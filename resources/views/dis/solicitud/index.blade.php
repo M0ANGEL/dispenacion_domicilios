@@ -3,7 +3,7 @@
     <style>
         /* busqueda */
         .buscar {
-            margin: 0px 200px;
+            margin: 0px 30%;
             margin-bottom: 30px;
         }
 
@@ -59,12 +59,11 @@
 
 
     {{-- barra buscar --}}
-    <form action="{{ route('pacientes.index') }}" method="get">
+    <form action="{{ route('solicitud.index') }}" method="get">
         <div class="buscar">
             <input class="barra" type="text" name="text" value="{{ $busqueda }}" />
             <input class="btn-buscar" type="submit" value="Buscar">
         </div>
-    </form>
 
     @if ($users->count())
         <div class="contenedor">
@@ -101,11 +100,14 @@
                             Documento
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Telefono
+                            FECHA SOLICITUD
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            EDITAR
+                            USUARIO
                         </th>
+                        {{-- <th scope="col" class="px-6 py-3">
+                            EDITA
+                        </th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -116,31 +118,36 @@
                                 {{ $Mipre->id }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ $Mipre->nombre1 }}
+                                {{ $Mipre->paciente->nombre1 ?? '' }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $Mipre->nombre2 }}
+                                {{ $Mipre->paciente->nombre2 ?? '' }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $Mipre->apellido1 }}
+                                {{ $Mipre->paciente->apellido1 ?? '' }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $Mipre->apellido2 }}
+                                {{ $Mipre->paciente->apellido2 ?? '' }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $Mipre->tipo_doc }}
+                                {{ $Mipre->paciente->tipo_doc ?? '' }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $Mipre->documento }}
+                                {{ $Mipre->paciente->documento ?? '' }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $Mipre->telfono }}
+                                {{ $Mipre->fecha_solicitud ?? '' }}
                             </td>
                             <td class="px-6 py-4">
-                                <a href="{{ route('pacientes.edit', $Mipre) }}">
+                                {{ $Mipre->userSolicita->name ?? '' }}
+                            </td>
+                            {{-- <td class="px-6 py-4">
+                                <a href="{{ route('solicitud.edit', $Mipre) }}">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
                             </td>
+
+                            </td> --}} 
                         </tr>
                     @endforeach
                 </tbody>

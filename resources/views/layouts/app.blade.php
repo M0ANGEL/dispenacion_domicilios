@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>M.R GESTION</title>
+    <title>M.R</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
@@ -51,19 +51,16 @@
     @stack('css')
 
     <style>
-        /* body {
-            background: rgb(255, 255, 255);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background: url({{ asset('images/octubre-ha.jpg') }});
-        } */
-
         body {
+            background: #bfbdbd;
+        }
+
+        /* body {
             background: url({{ asset('images/navidad/navidad.png') }}) no-repeat center center fixed;
             background-size: cover;
             background-color: rgb(0, 0, 0);
             /* Esto es por si la imagen no carga o es pequeña */
-        }
+        } */
 
 
         /* Archivo resources/css/app.css */

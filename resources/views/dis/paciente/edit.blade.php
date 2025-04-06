@@ -16,6 +16,23 @@
         style="box-shadow: 0 4px 6px rgba(0, 0, 0, 1); "> {{-- /* Sombra del formulario */ --}}
         @csrf
         @method('PUT')
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div>
+                <label>Numero Documento</label>
+                <input type="text" name="documento" placeholder="Numero Documento"
+                    class="border p-2 rounded w-full" value="{{ $paciente->documento }}" >
+            </div>
+            <div>
+                <label>Tipo Documento</label>
+                <x-select class="w-full" name="tipo_doc">
+                    <option value="">Seleccione Tipo Documento</option>
+                    <option value="CC" @selected($paciente->tipo_doc == 'CC')>CC</option>
+                    <option value="TI" @selected($paciente->tipo_doc == 'TI')>TI</option>
+                </x-select>
+            </div>
+           
+        </div>
        
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div>
@@ -38,31 +55,27 @@
                 <input type="text" placeholder="Angel " name="apellido2"
                     class="border p-2 rounded w-full" value="{{ $paciente->apellido2 }}" >
             </div>
-            <div>
-                <label>Tipo Documento</label>
-                <x-select class="w-full" name="tipo_doc">
-                    <option value="">Seleccione Tipo Documento</option>
-                    <option value="CC" @selected($paciente->tipo_doc == 'CC')>CC</option>
-                    <option value="TI" @selected($paciente->tipo_doc == 'TI')>TI</option>
-                </x-select>
-            </div>
-            <div>
-                <label>Numero Documento</label>
-                <input type="text" name="documento" placeholder="Numero Documento"
-                    class="border p-2 rounded w-full" value="{{ $paciente->documento }}" >
-            </div>
+          
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
                 <label>Numero Telefono</label>
-                <input type="text" name="telfono" placeholder="*** - **** - ** - **"
+                <input type="text" name="telfono" 
                     class="border p-2 rounded w-full" value="{{ $paciente->telfono }}" >
             </div>
+
             <div>
-                <label>Observacion</label>
-                <textarea type="text" name="observacion" placeholder="*** - **** - ** - **"
-                    class="border p-2 rounded w-full">{{ $paciente->observacion }} </textarea>
+                <label>Direccion</label>
+                <input type="text" name="direcciones"
+                    class="border p-2 rounded w-full" value="{{ $paciente->direcciones }}" >
             </div>
+          
+        </div>
+
+        <div>
+            <label>Observacion</label>
+            <textarea type="text" name="observacion"
+                class="border p-2 rounded w-full">{{ $paciente->observacion }} </textarea>
         </div>
 
         <div class="flex justify-end">

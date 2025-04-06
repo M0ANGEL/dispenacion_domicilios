@@ -21,6 +21,7 @@ class Mipres extends Model
         'documento',
         'telfono',
         'observacion',
+        'direcciones',
         'user_id'
     ];
 

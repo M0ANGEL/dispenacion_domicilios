@@ -3,7 +3,7 @@
     <style>
         /* busqueda */
         .buscar {
-            margin: 0px 30%;
+            margin: 0px 20%;
             margin-bottom: 30px;
         }
 
@@ -59,7 +59,7 @@
 
 
     {{-- barra buscar --}}
-    <form action="{{ route('dispensacion.index') }}" method="get">
+    <form action="{{ route('domicilios.index') }}" method="get">
         <div class="buscar">
             <input class="barra" type="text" name="text" value="{{ $busqueda }}" />
             <input class="btn-buscar" type="submit" value="Buscar">
@@ -68,7 +68,7 @@
         @if ($users->count())
             <div class="contenedor">
                 <div id="alerta" role="alert">
-                    <span class="font-medium"><b>Filtros Busqueda!</b></span><b> Nombre - Documento</b>
+                    <span class="font-medium"><b>Filtros Busqueda!</b></span><b> Documento</b>
                 </div>
             </div>
         @endif

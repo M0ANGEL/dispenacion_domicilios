@@ -70,12 +70,6 @@
                         Correo
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        PERFIL
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        BODEGA
-                    </th>
-                    <th scope="col" class="px-6 py-3">
                         EDITAR
                     </th>
                 </tr>
