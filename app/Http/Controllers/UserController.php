@@ -8,6 +8,7 @@ use App\Models\Agotados\Agotados;
 use App\Models\huv\huv;
 use App\Models\mipres\Entregas;
 use App\Models\mipres\Mipres;
+use App\Models\Solicitud;
 use App\Models\User;
 use App\Models\vistaMedica\vista;
 use Illuminate\Http\Request;
@@ -115,12 +116,13 @@ class UserController extends Controller
     }
 
  
-    // public function home()
-    // {
-    //     $vista = vista::count();
-    //     $Agotados = Agotados::where('estado', '=', 1)->count();
-    //     $personas = Mipres::count();
-    //     $mipres = Entregas::where('cantidad_restante', '!=', 0)->count();
-    //     return view('dashboard', compact('vista', 'Agotados', 'personas', 'mipres'));
-    // }
+    public function home()
+    {
+        $pacientes1 = Mipres::count(); //cantidad de pacientes
+        $solicitudes_pendites = Solicitud::where('estado', '=', 1)->count();
+        $solicitudes_realizadas = Solicitud::where('estado', '=', 2)->count();
+        $envios_realizados = Solicitud::where('estado', '=', 3)->count();
+        $envios_confirmados = Solicitud::where('estado', '=', 4)->count();
+        return view('dashboard', compact('pacientes1', 'solicitudes_pendites', 'solicitudes_realizadas','envios_realizados', 'envios_confirmados'));
+    }
 }

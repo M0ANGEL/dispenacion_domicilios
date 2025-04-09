@@ -32,7 +32,7 @@ return new class extends Migration
 
 
             //estado a domicilio
-            $table->string('estado',1)->default(1); //1 creacion de solicitud  || 2 cuando se baja el txt pasa a domicilio  || 3 cuando domicilio confirma entrega fin proceso
+            $table->string('estado',1)->default(1); //1 creacion de solicitud  || 2 cuando se confirma la solicitud || 3 cuando se baja el txt pasa a domicilio  || 3 cuando domicilio confirma entrega fin proceso
             $table->timestamp('fecha_domicilio')->nullable();
             $table->unsignedBigInteger('usuario_baja_reporte_id')->nullable();
 

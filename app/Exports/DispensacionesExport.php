@@ -12,17 +12,13 @@ class DispensacionesExport implements FromCollection, WithHeadings
     {
         return Dispensacion::where('estado', 2)
             ->take(50)
-            ->get(['id', 'nombre1', 'apellido1', 'producto', 'cantida_formula', 'valor']);
+            ->get(['id', 'valor']);
     }
 
     public function headings(): array
     {
         return [
             'ID',
-            'Nombre',
-            'Apellido',
-            'Producto',
-            'Cantidad',
             'Valor',
         ];
     }

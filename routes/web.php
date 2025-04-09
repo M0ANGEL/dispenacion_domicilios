@@ -23,33 +23,33 @@ Route::get('/', function () {
 
 
 
-Route::resource('/users', UserController::class)/* ->middleware(['can:admin_usuarios']) */;
+Route::resource('/users', UserController::class)->middleware(['can:admin_usuarios']);
 
-Route::resource('/roles', RoleController::class)/* ->middleware(['can:crear_roles']) */;
-Route::resource('/permissions', PermissionController::class)/* ->middleware(['can:crear_permisos']) */;
+Route::resource('/roles', RoleController::class)->middleware(['can:crear_roles']);
+Route::resource('/permissions', PermissionController::class)->middleware(['can:crear_permisos']);
 
 
 /* premis mipres */
 
-Route::resource('pacientes', PacienteController::class)/* ->middleware(['can:Mipres_Crear_Paciente'] )*/;
+Route::resource('pacientes', PacienteController::class)->middleware(['can:pacientes'] );
 
 //solicitud
-Route::resource('solicitud', SolicitudController::class)/* ->middleware(['can:Mipres_Crear_Paciente'] )*/;
+Route::resource('solicitud', SolicitudController::class)->middleware(['can:solicitudes'] );
 Route::get('/paciente/{cedula}', [SolicitudController::class, 'buscar']);
 
 
 //dispensacion
-Route::resource('dispensacion', DispensacionController::class)/*->middleware(['can:Mipres_Crear_mipres'])*/;
+Route::resource('dispensacion', DispensacionController::class)->middleware(['can:dispensacion']);
 
 //domicilios
-Route::resource('domicilios', DomicilioController::class)/*->middleware(['can:Mipres_Crear_mipres'])*/;
+Route::resource('domicilios', DomicilioController::class)->middleware(['can:domicilios']);
 
 //export archivos
 Route::get('exportar', [ExportController::class,'index'])->name('exportar.index');
 Route::post('/exportar', [ExportController::class, 'exportar'])->name('exportar.exportar');
 
 //confirmar domicilio
-Route::resource('confirmacion', ConfirmarDomicilioController::class)/*->middleware(['can: confirmar-domicilio'])*/;
+Route::resource('confirmacion', ConfirmarDomicilioController::class)->middleware(['can: confirmacion_domicilios']);
 
 
 
@@ -66,8 +66,9 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+    ])->group(function () {
+        Route::get(
+            '/dashboard',
+            [UserController::class, 'home']
+        )->name('dashboard');
+    });

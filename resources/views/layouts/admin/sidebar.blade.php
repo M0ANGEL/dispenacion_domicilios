@@ -99,7 +99,7 @@
 
     //CREACION PACIENTE
     $buttonPresmy = [
-        'can' => 'ModuloMipres',
+        'can' => 'ModuloPacientes',
     ];
 
     $pacientes = [
@@ -109,7 +109,7 @@
             'url' => route('pacientes.create'),
             'active' => request()->routeIs('pacientes.create'),
             'icon' => 'fa-regular fa-circle',
-            'can' => 'Mipres_Crear_Paciente',
+            'can' => 'Crear_Paciente',
         ],
         /*  buscar Paciente*/
         [
@@ -117,13 +117,13 @@
             'url' => route('pacientes.index'),
             'active' => request()->routeIs('pacientes.index'),
             'icon' => 'fa-regular fa-circle',
-            'can' => 'Mipres_Crear_Paciente',
+            'can' => 'Busqueda_Paciente',
         ],
     ];
 
     //SOLICITUD
     $buttonSolicitud = [
-        'can' => 'ModuloMipres',
+        'can' => 'ModuloSolicitudes',
     ];
 
     $solicitudes = [
@@ -133,7 +133,7 @@
             'url' => route('solicitud.create'),
             'active' => request()->routeIs('solicitud.create'),
             'icon' => 'fa-regular fa-circle',
-            'can' => 'Mipres_Crear_mipres',
+            'can' => 'Crear_Solicitudes',
         ],
         /* crear formulacion de una solicitud */
         [
@@ -141,13 +141,13 @@
             'url' => route('solicitud.index'),
             'active' => request()->routeIs('solicitud.index'),
             'icon' => 'fa-regular fa-circle',
-            'can' => 'Mipres_Crear_mipres',
+            'can' => 'buscar_solicitudes',
         ],
     ];
 
     //PROGRAMACION
     $buttonDispensacion = [
-        'can' => 'ModuloMipres',
+        'can' => 'ModuloDispensacion',
     ];
 
     $dispensaciones = [
@@ -157,13 +157,13 @@
             'url' => route('dispensacion.index'),
             'active' => request()->routeIs('dispensacion.*'),
             'icon' => 'fa-regular fa-circle',
-            'can' => 'Mipres_Crear_mipres',
+            'can' => 'dispensaciones',
         ],
     ];
 
-        //domicilio
+    //domicilio
     $buttonDomicilio = [
-        'can' => 'ModuloMipres',
+        'can' => 'ModuloDomicilios',
     ];
 
     $domicilios = [
@@ -173,21 +173,21 @@
             'url' => route('domicilios.index'),
             'active' => request()->routeIs('domicilios.index'),
             'icon' => 'fa-regular fa-circle',
-            'can' => 'Mipres_Crear_mipres',
+            'can' => 'ver_domicilios_pendientes',
         ],
-          /* Crear solicitud */
-          [
+        /* Crear solicitud */
+        [
             'name' => 'Reporte Domicilios',
             'url' => route('exportar.index'),
             'active' => request()->routeIs('exportar.index'),
             'icon' => 'fa-regular fa-circle',
-            'can' => 'Mipres_Crear_mipres',
+            'can' => 'reporte_domicilios',
         ],
     ];
 
-         //confirmar domicilio
+    //confirmar domicilio
     $buttonDomicilioConfirmar = [
-        'can' => 'ModuloMipres',
+        'can' => 'ModuloConfirmarDomicilio',
     ];
 
     $domiciliosConfirmar = [
@@ -197,7 +197,7 @@
             'url' => route('confirmacion.index'),
             'active' => request()->routeIs('confirmacion.index'),
             'icon' => 'fa-regular fa-circle',
-            'can' => 'Mipres_Crear_mipres',
+            'can' => 'confirmar_emtrega',
         ],
     ];
 
@@ -270,7 +270,7 @@
             </li>
 
             {{-- admin --}}
-            {{-- @canany($buttonAdmin['can']) --}}
+            @canany($buttonAdmin['can'])
             <li>
                 <button type="button"
                     class="flex items-center w-full p-2 text-base  transition duration-75 rounded-lg group hover:bg-gray-100 hover:text-gray-900 text-white "
@@ -302,10 +302,10 @@
                     @endforeach
                 </ul>
             </li>
-            {{-- @endcanany --}}
+            @endcanany
 
             {{-- pacientes --}}
-            {{-- @canany($buttonPresmy['can']) --}}
+            @canany($buttonPresmy['can'])
             <li>
                 <button type="button"
                     class="flex items-center w-full p-2 text-base  transition duration-75 rounded-lg group hover:bg-gray-100 hover:text-gray-900 text-white "
@@ -338,10 +338,10 @@
 
                 </ul>
             </li>
-            {{-- @endcanany --}}
+            @endcanany
 
             {{-- solicitud --}}
-            {{-- @canany($buttonSolicitud['can']) --}}
+            @canany($buttonSolicitud['can'])
             <li>
                 <button type="button"
                     class="flex items-center w-full p-2 text-base  transition duration-75 rounded-lg group hover:bg-gray-100 hover:text-gray-900 text-white "
@@ -374,10 +374,10 @@
 
                 </ul>
             </li>
-            {{-- @endcanany --}}
+            @endcanany
 
             {{-- dispensacio --}}
-            {{-- @canany($buttonDispensacion['can']) --}}
+            @canany($buttonDispensacion['can'])
             <li>
                 <button type="button"
                     class="flex items-center w-full p-2 text-base  transition duration-75 rounded-lg group hover:bg-gray-100 hover:text-gray-900 text-white "
@@ -410,10 +410,10 @@
 
                 </ul>
             </li>
-            {{-- @endcanany --}}
+            @endcanany
 
             {{-- domicilio --}}
-            {{-- @canany($buttonDomicilio['can']) --}}
+            @canany($buttonDomicilio['can'])
             <li>
                 <button type="button"
                     class="flex items-center w-full p-2 text-base  transition duration-75 rounded-lg group hover:bg-gray-100 hover:text-gray-900 text-white "
@@ -446,10 +446,10 @@
 
                 </ul>
             </li>
-            {{-- @endcanany --}}
+            @endcanany
 
-              {{-- domicilio --}}
-            {{-- @canany($buttonDomicilioConfirmar['can']) --}}
+            {{-- domicilio --}}
+            @canany($buttonDomicilioConfirmar['can'])
             <li>
                 <button type="button"
                     class="flex items-center w-full p-2 text-base  transition duration-75 rounded-lg group hover:bg-gray-100 hover:text-gray-900 text-white "
@@ -482,20 +482,7 @@
 
                 </ul>
             </li>
-            {{-- @endcanany --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
+            @endcanany
 
             {{-- link normales --}}
             {{-- @foreach ($links as $link)
@@ -509,7 +496,6 @@
                     </li>
                 @endcanany
             @endforeach --}}
-
         </ul>
     </div>
 </aside>

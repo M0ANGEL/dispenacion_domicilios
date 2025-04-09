@@ -52,7 +52,7 @@
 
     <style>
         body {
-            background: #bfbdbd;
+            background: #e4e1e1;
         }
 
         /* body {
